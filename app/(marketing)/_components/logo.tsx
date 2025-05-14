@@ -15,12 +15,13 @@ export const Logo = () => {
             src="/notion-app-logo.jpg"
             height="40"
             width="40"
-            alt="logo" />
+            alt="logo"
+             />
 
-            <p className={ cn("font-semibold",
+            <p className={cn("font-semibold",
                 font.className
             )}>
-                NOTION CLONE
+                NOTION
             </p>
         </div>
     )
