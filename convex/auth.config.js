@@ -1,8 +1,8 @@
-export default{
-    providers:[
-        {
-            domain:"https://capital-cricket-96.clerk.accounts.dev",
-            applicationId: "convex"
-        }
-    ]
-}
+export default {
+  providers: [
+    {
+      domain: "https://capital-cricket-96.clerk.accounts.dev",
+      applicationID: "convex",
+    },
+  ]
+};
