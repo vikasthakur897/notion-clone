@@ -2,7 +2,6 @@
 
 import { RainbowButton } from "@/components/magicui/rainbow-button";
 import { Spinner } from "@/components/spinner";
-import { Button } from "@/components/ui/button";
 import { SignInButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
 import { ArrowRight } from "lucide-react";
@@ -27,11 +26,12 @@ export const Heading = () => {
         </div>
       )}
       {isAuthenticated && !isLoading && (
-        <Button asChild>
-          <Link href="/documents" />
-          Enter Notion-Clone
-          <ArrowRight className="h-4 w-4 ml-2" />
-        </Button>
+        <RainbowButton asChild>
+          <Link href="/documents">
+            Enter Notion-Clone
+            <ArrowRight className="h-4 w-4 ml-2" />
+          </Link>
+        </RainbowButton>
       )}
 
       {!isAuthenticated && !isLoading && (
