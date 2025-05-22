@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {Inter, Geist, Geist_Mono,  } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { ConvexClientProvider } from "@/components/provider/convex-provider";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,6 +14,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+const inter =Inter({ subsets: ["latin"]})
 
 export const metadata: Metadata = {
   title: "Notion Clone",
@@ -51,6 +53,7 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="clone-theme"
           >
+            <Toaster position="buttom-center" />
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
