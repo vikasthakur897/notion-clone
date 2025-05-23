@@ -6,10 +6,11 @@ import { usePathname } from "next/navigation";
 import { ElementRef, useRef, useState, useEffect } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import UserItem from "./user-item";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Item } from "./item";
 import { toast } from "sonner";
+import DocumentList from "./document-list";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -18,8 +19,7 @@ export const Navigation = () => {
   const sidebarRef = useRef<ElementRef<"aside">>(null);
   const navbarRef = useRef<ElementRef<"div">>(null);
 
-  const documents = useQuery(api.documnets.get);
-  const create = useMutation(api.documents.create);
+  const create = useMutation(api.documnets.create);
 
   const [isResetting, setIsResetting] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(isMobile);
@@ -51,7 +51,7 @@ export const Navigation = () => {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isResizingRef.current) return;
-    let newWidth = event.clientX;
+    let newWidth = e.clientX;
 
     if (newWidth < 240) newWidth = 240;
     if (newWidth > 480) newWidth = 480;
@@ -138,9 +138,7 @@ export const Navigation = () => {
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
         </div>
         <div className="mt-4">
-          {documents?.map((document) => (
-            <p key={document._id}>{document.title}</p>
-          ))}
+         <DocumentList />
         </div>
         <div
           onMouseDown={handleMouseDown}

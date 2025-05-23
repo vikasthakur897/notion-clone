@@ -39,7 +39,7 @@ const DocumentsPage = () => {
         className="hidden dark:block"
       />
       <h2 className="text-lg font-medium">
-        Welcome to {user?.firstName}&apos; Notion
+        Welcome to {user?.firstName}&apos;s Notion
       </h2>
       <Button onClick={onCreate} variant={"outline"}>
         <PlusCircle className="h-4 w-4 mr-2" />
