@@ -22,11 +22,13 @@ interface ItemProps {
   label: string;
   onClick?: () => void;
   icon: LucideIcon;
+  className?: string;
 }
 export const Item = ({
   id,
   label,
   onClick,
+  className,
   icon: Icon,
   active,
   documentIcon,

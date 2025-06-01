@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/provider/theme-provider";
 import { ConvexClientProvider } from "@/components/provider/convex-provider";
 import { Toaster } from "sonner";
+import { ModelProvider } from "@/components/provider/model-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,7 +54,8 @@ export default function RootLayout({
             disableTransitionOnChange
             storageKey="clone-theme"
           >
-            <Toaster position="buttom-center" />
+            <Toaster position="bottom-center" />
+            <ModelProvider/>
             {children}
           </ThemeProvider>
         </ConvexClientProvider>
