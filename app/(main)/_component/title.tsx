@@ -44,11 +44,24 @@ const Title = ({
             title: event.target.value || "Untitled"
         })
     }
+
+    const onKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        if (e.key === "Enter"){
+            disableInput()
+        }
+    };
+
+
     return (
         <div className="flex items-center gap-x-1">
             {!!initialDate.icon && <p>{ initialDate.icon }</p>}
 
-            {isEditing ? (<Input className="h-7 px-2 focus-visible:ring-transparent" />):(
+            {isEditing ? (<Input ref={inputRef}
+             onClick={enableInput}
+             onBlur={disableInput}
+               className="h-7 px-2 focus-visible:ring-transparent" />):(
                 <Button onClick={() => {}}
                 variant="ghost"
                 size="sm"
