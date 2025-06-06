@@ -29,15 +29,15 @@ const Banner = ({ documentId }: BannerProps) => {
   };
 
   const onRestore = () => {
-    const promise = restore({ id: documentId }).then(() => {
-      router.push("/documents");
-    });
+    const promise = restore({ id: documentId })
 
     toast.promise(promise, {
       loading: "Restoring notes...",
       success: "Note Restored!",
       error: "Failed to restore note.",
     });
+
+    router.push("/documents");
   };
 
   return (
