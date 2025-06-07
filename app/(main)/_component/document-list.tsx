@@ -31,7 +31,7 @@ const DocumentList = ({
         }))
     };
 
-    const documents = useQuery(api.documnets.getSidebar,{
+    const documents = useQuery(api.documents.getSidebar,{
         parentDocument: parentDocumentId
     });
 

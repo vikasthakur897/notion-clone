@@ -2,8 +2,9 @@
 import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
-import Navigation from "./_component/navigation";
 import { SearchCommand } from "@/components/search-command";
+import { Navigation } from "./_component/navigation";
+
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useConvexAuth();

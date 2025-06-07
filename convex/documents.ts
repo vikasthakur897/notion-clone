@@ -14,12 +14,12 @@ export const archive = mutation({
 
     const userId = identity.subject;
 
-    const existingDocumnet = await ctx.db.get(args.id);
-    if(!existingDocumnet){
+    const existingDocument = await ctx.db.get(args.id);
+    if(!existingDocument){
       throw new Error("Document not found");
     }
 
-    if(existingDocumnet.userId !== userId){
+    if(existingDocument.userId !== userId){
       throw new Error("Unauthorized")
     }
 
@@ -231,29 +231,27 @@ export const getSearch = query( {
 
 export const getById = query({
   args: { documentId: v.id("documents") },
-  handler: async (ctx , args) =>{
+  handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
 
     const document = await ctx.db.get(args.documentId);
 
-    if(!document){
-      throw new Error("Not found")
+    if (!document) {
+      throw new Error("Not found");
     }
 
-    if(document.isPublished && !document.isArchived){
+    if (document.isPublished && !document.isArchived) {
       return document;
     }
 
-    if(!identity) {
+    if (!identity) {
       throw new Error("Not authenticated");
     }
 
     const userId = identity.subject;
 
-    if(document.userId !== userId){
-
-      throw new Error("Unauthorized")
-
+    if (document.userId !== userId) {
+      throw new Error("Unauthorized");
     }
 
     return document;

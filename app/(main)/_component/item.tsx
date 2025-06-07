@@ -41,8 +41,8 @@ export const Item = ({
     // const router = useRouter();
     const { user } = useUser();
 
-    const create = useMutation(api.documnets.create);
-    const archive = useMutation(api.documnets.archive);
+    const create = useMutation(api.documents.create);
+    const archive = useMutation(api.documents.archive);
 
     const onArchive = (e: React.MouseEvent<HTMLDivElement>) => {
       e.stopPropagation();

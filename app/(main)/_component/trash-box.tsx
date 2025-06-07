@@ -14,10 +14,10 @@ const TrashBox = () => {
   const router = useRouter();
 
   const param = useParams();
-  const document = useQuery(api.documnets.getTrash);
-  const restore = useMutation(api.documnets.restore);
+  const document = useQuery(api.documents.getTrash);
+  const restore = useMutation(api.documents.restore);
 
-  const remove = useMutation(api.documnets.remove);
+  const remove = useMutation(api.documents.remove);
 
   const [search, setSearch] = useState("");
 

@@ -7,23 +7,24 @@ import { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Ghost } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface TitleProps{
-    initialDate: Doc<"documents">
+    initialData: Doc<"documents">
 }
 
 const Title = ({
-    initialDate
+    initialData
 }: TitleProps) => {
 
     const [isEditing, setIsEditing] = useState(false)
 
     const inputRef =useRef<HTMLInputElement>(null)
-    const [title, setTitle] = useState(initialDate.title || "Untitled")
-    const update = useMutation(api.documnets.update)
+    const [title, setTitle] = useState(initialData.title || "Untitled")
+    const update = useMutation(api.documents.update)
 
     const enableInput = () =>{
-        setTitle(initialDate.title);
+        setTitle(initialData.title);
         setIsEditing(true),
         setTimeout(() => {
             inputRef.current?.focus();
@@ -40,7 +41,7 @@ const Title = ({
     ) =>{
         setTitle(event.target.value);
         update({
-            id: initialDate._id,
+            id: initialData._id,
             title: event.target.value || "Untitled"
         })
     }
@@ -56,22 +57,30 @@ const Title = ({
 
     return (
         <div className="flex items-center gap-x-1">
-            {!!initialDate.icon && <p>{ initialDate.icon }</p>}
+            {!!initialData.icon && <p>{ initialData.icon }</p>}
 
             {isEditing ? (<Input ref={inputRef}
              onClick={enableInput}
              onBlur={disableInput}
-               className="h-7 px-2 focus-visible:ring-transparent" />):(
-                <Button onClick={() => {}}
+             onChange={onChange}
+             onKeyDown={onKeyDown}
+             value={title}  className="h-7 px-2 focus-visible:ring-transparent" />):(
+                <Button onClick={enableInput}
                 variant="ghost"
                 size="sm"
                 className="font-normal h-auto p-1">
                     <span className="truncate">{
-                    initialDate?.title
+                    initialData?.title
                 }</span></Button>
             )}
         </div>
       );
+}
+
+Title.Skeleton = function TitleSkeleton() {
+    return(
+        <Skeleton className="h-9 w-16 rounded-md" />
+    )
 }
  
 export default Title;
