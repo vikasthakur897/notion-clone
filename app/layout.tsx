@@ -1,65 +1,52 @@
-import type { Metadata } from "next";
-import {Inter, Geist, Geist_Mono,  } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/provider/theme-provider";
-import { ConvexClientProvider } from "@/components/provider/convex-provider";
+import './globals.css'
 import { Toaster } from "sonner";
-import { ModelProvider } from "@/components/provider/model-provider";
+import { Inter } from 'next/font/google'
+import type { Metadata } from 'next'
+import { ConvexClientProvider } from '@/components/provider/convex-provider';
+import { ThemeProvider } from '@/components/provider/theme-provider';
+import { ModalProvider } from '@/components/provider/model-provider';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-const inter =Inter({ subsets: ["latin"]})
+
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Notion Clone",
-  description: "A Notion clone built with Next.js and Tailwind CSS",
+  title: 'Notion',
+  description: 'The connected workspace where better, faster work happens.',
   icons: {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/notion-app-logo.jpg",
-        href: "/notion-app-logo.jpg",
+        url: "/logo.svg",
+        href: "/logo.svg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/notion-app-logo.jpg",
-        href: "/notion-app-logo.jpg",
-      },
-    ],
-  },
-};
+        url: "/logo-dark.svg",
+        href: "/logo-dark.svg",
+      }
+    ]
+  }
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={inter.className}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="clone-theme"
-          >
+          {/* <EdgeStoreProvider> */}
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="jotion-clone-2">
             <Toaster position="bottom-center" />
-            <ModelProvider/>
+            <ModalProvider/>
             {children}
           </ThemeProvider>
+          {/* </EdgeStoreProvider> */}
         </ConvexClientProvider>
       </body>
     </html>
-  );
+  )
 }

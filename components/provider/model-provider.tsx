@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { SettingsModel } from "../models/setting-model";
 
-export const ModelProvider = () => {
+export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
