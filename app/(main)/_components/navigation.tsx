@@ -23,17 +23,17 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { useSearch } from "@/hooks/use-search";
-import { useSetting } from "@/hooks/use-setting";
+import { useSettings } from "@/hooks/use-settings";
 
+import { UserItem } from "./user-item";
 import { Item } from "./item";
+import { DocumentList } from "./document-list";
+import { TrashBox } from "./trash-box";
 import { Navbar } from "./navbar";
-import UserItem from "./user-item";
-import DocumentList from "./document-list";
-import TrashBox from "./trash-box";
 
 export const Navigation = () => {
   const router = useRouter();
-  const settings = useSetting();
+  const settings = useSettings();
   const search = useSearch();
   const params = useParams();
   const pathname = usePathname();

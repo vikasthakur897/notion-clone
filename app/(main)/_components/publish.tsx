@@ -11,9 +11,9 @@ import {
   Popover,
   PopoverContent
 } from "@/components/ui/popover"
+import { useOrigin } from "@/hooks/use-origin";
 import { api } from "@/convex/_generated/api";
 import { Button } from "@/components/ui/button";
-import { useOrigin } from "@/hooks/use-origin";
 
 interface PublishProps {
   initialData: Doc<"documents">

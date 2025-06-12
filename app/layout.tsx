@@ -1,12 +1,11 @@
-import './globals.css'
 import { Toaster } from "sonner";
-import { Inter } from 'next/font/google'
+import { ThemeProvider } from '@/components/providers/theme-provider'
+import './globals.css'
 import type { Metadata } from 'next'
-import { ConvexClientProvider } from '@/components/provider/convex-provider';
-import { ThemeProvider } from '@/components/provider/theme-provider';
-import { ModalProvider } from '@/components/provider/model-provider';
-
-
+import { Inter } from 'next/font/google'
+import { ConvexClientProvider } from '@/components/providers/convex-provider'
+import { ModalProvider } from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from "@/lib/edgestore";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,13 +16,13 @@ export const metadata: Metadata = {
     icon: [
       {
         media: "(prefers-color-scheme: light)",
-        url: "/logo.svg",
-        href: "/logo.svg",
+        url: "/notion-app-logo.jpg",
+        href: "/notion-app-logo.jpg",
       },
       {
         media: "(prefers-color-scheme: dark)",
-        url: "/logo-dark.svg",
-        href: "/logo-dark.svg",
+        url: "/notion-app-logo.jpg",
+        href: "/notion-app-logo.jpg",
       }
     ]
   }
@@ -38,13 +37,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexClientProvider>
-          {/* <EdgeStoreProvider> */}
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange storageKey="jotion-clone-2">
+        <EdgeStoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="jotion-theme-2"
+          >
             <Toaster position="bottom-center" />
-            <ModalProvider/>
+            <ModalProvider />
             {children}
           </ThemeProvider>
-          {/* </EdgeStoreProvider> */}
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>
